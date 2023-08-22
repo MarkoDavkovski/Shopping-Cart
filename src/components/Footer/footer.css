@@ -1,0 +1,27 @@
+footer {
+  background-color: green;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.3rem;
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+a {
+  color: white;
+  text-decoration: none;
+}
+
+.icon-container {
+  display: inline-block;
+  overflow: hidden;
+  transition: transform 300ms ease-in-out;
+}
+
+.github-link:hover .icon-container {
+  transform: scale(1.2) rotate(360deg);
+  transform-origin: center;
+}

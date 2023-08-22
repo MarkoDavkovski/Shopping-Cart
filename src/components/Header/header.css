@@ -1,0 +1,15 @@
+#page-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  padding: 1rem;
+  background-color: red;
+  font-size: 1.25rem;
+}
+#page-header > a {
+  text-decoration: none;
+  color: black;
+  font-weight: 500;
+}
+/* .fa-cart-shopping {
+} */
