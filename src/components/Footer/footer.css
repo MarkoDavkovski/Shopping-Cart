@@ -1,5 +1,7 @@
+@import "../../styles/colors.css";
+
 footer {
-  background-color: green;
+  background-color: var(--lightBlue);
   width: 100%;
   display: flex;
   justify-content: center;

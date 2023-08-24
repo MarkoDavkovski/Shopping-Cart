@@ -1,3 +1,7 @@
 :root {
-  --bgBlack: rgb(30, 24, 61);
+  --bgBlack: #181e25;
+  --whiteColor: #f9f7f7;
+  --grayColor: #dbe2ef;
+  --lightBlue: #3f72af;
+  --darkBlue: #112d4e;
 }

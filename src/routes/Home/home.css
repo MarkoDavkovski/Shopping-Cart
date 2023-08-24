@@ -1,6 +1,9 @@
+@import "../../styles/colors.css";
 #home {
   display: flex;
   justify-content: center;
   align-items: center;
   height: fit-content;
+  color: var(--white);
+  /* background-color: ; */
 }

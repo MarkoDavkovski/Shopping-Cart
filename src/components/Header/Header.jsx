@@ -6,7 +6,9 @@ const Header = () => {
   return (
     <>
       <nav id="page-header">
-        <Link to="/">Logo</Link>
+        <Link to="/">
+          <img src="/fflogo.png" alt="logo" className="header-logo" />
+        </Link>
         <Link to="/">Home</Link>
         <Link to="/Store">Store</Link>
         <Link to="/About">About</Link>

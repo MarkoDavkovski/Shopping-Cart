@@ -9,6 +9,7 @@ import ErrorPage from "./routes/ErrorPage/ErrorPage.jsx";
 import Home from "./routes/Home/Home.jsx";
 import About from "./routes/About/About.jsx";
 import Store from "./routes/Store/Store.jsx";
+import Cart from "./routes/Cart/Cart.jsx";
 import App from "./App.jsx";
 
 const Router = () => {
@@ -19,6 +20,7 @@ const Router = () => {
 
         <Route path="/About" element={<About />} />
         <Route path="/Store" element={<Store />} />
+        <Route path="/Cart" element={<Cart />} />
       </Route>
     )
   );
