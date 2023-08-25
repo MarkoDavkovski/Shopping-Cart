@@ -1,21 +1,21 @@
 import "./header.css";
-import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faShoppingCart } from "@fortawesome/free-solid-svg-icons";
 const Header = () => {
   return (
     <>
       <nav id="page-header">
-        <Link to="/">
+        <NavLink to="/">
           <img src="/fflogo.png" alt="logo" className="header-logo" />
-        </Link>
-        <Link to="/">Home</Link>
-        <Link to="/Store">Store</Link>
-        <Link to="/About">About</Link>
-        <Link to="/Cart">
+        </NavLink>
+        <NavLink to="/">Home</NavLink>
+        <NavLink to="/Store">Store</NavLink>
+        <NavLink to="/About">About</NavLink>
+        <NavLink to="/Cart">
           {" "}
           <FontAwesomeIcon icon={faShoppingCart} size="1x" />
-        </Link>
+        </NavLink>
       </nav>
     </>
   );

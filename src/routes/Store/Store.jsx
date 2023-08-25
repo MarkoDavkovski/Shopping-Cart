@@ -1,28 +1,37 @@
 import "./store.css";
-import { useState, useEffect } from "react";
-
+import { useLoaderData } from "react-router-dom";
+import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 const Store = () => {
-  const [products, setProducts] = useState(null);
+  const products = useLoaderData();
 
-  useEffect(() => {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => setProducts(data.products))
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setProducts([]);
-      });
-  }, []);
   return (
-    <>
-      <div>
-        {products === null ? (
-          <div>Loading...</div>
-        ) : (
-          products.map((product) => <div key={product.id}>{product.brand}</div>)
-        )}
-      </div>
-    </>
+    <section id="store">
+      {console.log(products)}
+
+      {products &&
+        products.map((p) => {
+          let discountedPrice = p.price;
+          let discPercentage = p.discountPercentage;
+          let originalPrice = p.price / (1 - discPercentage / 100);
+          originalPrice = parseFloat(originalPrice).toFixed(2);
+
+          return (
+            <ProductCard
+              key={p.id}
+              title={p.title}
+              brand={p.brand}
+              category={p.category}
+              id={p.id}
+              description={p.description}
+              imgUrl={p.thumbnail}
+              discountedPrice={discountedPrice}
+              stock={p.stock}
+              discount={discPercentage}
+              originalPrice={originalPrice}
+            />
+          );
+        })}
+    </section>
   );
 };
 

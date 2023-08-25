@@ -12,14 +12,18 @@ import Store from "./routes/Store/Store.jsx";
 import Cart from "./routes/Cart/Cart.jsx";
 import App from "./App.jsx";
 
+import { useProducts } from "./hooks/useProducts.jsx";
+
 const Router = () => {
+  const products = useProducts();
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<App />} errorElement={<ErrorPage />}>
-        <Route index element={<Home />} />
+        <Route index element={<Home />} loader={() => products} />
 
         <Route path="/About" element={<About />} />
-        <Route path="/Store" element={<Store />} />
+        <Route path="/Store" element={<Store />} loader={() => products} />
         <Route path="/Cart" element={<Cart />} />
       </Route>
     )
@@ -28,42 +32,3 @@ const Router = () => {
 };
 
 export default Router;
-
-// const Router = () => {
-//   const router = createBrowserRouter([
-//     {
-//       path: "/",
-//       element: <App />,
-//       errorElement: <ErrorPage />,
-//       loader: rootLoader,
-//       action: rootAction,
-//       children: [
-//         {
-//           errorElement: <ErrorPage />,
-//           children: [
-//             { index: true, element: <Index /> },
-//             {
-//               path: "/contacts/:contactId",
-//               element: <Contact />,
-//               loader: contactLoader,
-//               action: contactAction,
-//             },
-//             {
-//               path: "/contacts/:contactId/edit",
-//               element: <Edit />,
-//               loader: contactLoader,
-//               action: editAction,
-//             },
-//             {
-//               path: "/contacts/:contactId/destroy",
-//               action: destroyAction,
-//               errorElement: <div>Oops there was an error!</div>,
-//             },
-//           ],
-//         },
-//       ],
-//     },
-//   ]);
-
-//   return <RouterProvider router={router} />;
-// };
