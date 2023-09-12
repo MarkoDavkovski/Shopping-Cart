@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
 import "./store.css";
 import { useLoaderData } from "react-router-dom";
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
 const Store = () => {
   const products = useLoaderData();
+  console.log("from store : " + products);
 
   return (
     <section id="store">
+      {/* {!products && <h1>Loading the products!</h1>} */}
       {products &&
         products.map((p) => {
           let discountedPrice = p.price;

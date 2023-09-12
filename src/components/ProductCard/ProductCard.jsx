@@ -2,8 +2,10 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 import "./product-card.css";
+import Cart from "../../routes/Cart/Cart";
 const ProductCard = ({
   title,
   brand,
@@ -17,6 +19,25 @@ const ProductCard = ({
   stock = null,
   imgUrl,
 }) => {
+  const [itemStock, setItemStock] = useState(stock);
+  const [itemAdded, setItemAdded] = useState(0);
+  const [itemRemoved, setItemRemoved] = useState(0);
+  const [totalPrice, setTotalPrice] = useState(0);
+
+  const handleClick = (item) => {
+    if (itemStock === 0) return alert(`This item is not available anymore!`);
+    setItemStock(itemStock - 1);
+    setItemAdded(itemAdded + 1);
+    setTotalPrice(totalPrice + item.discountedPrice);
+    <Cart
+      imgUrl={imgUrl}
+      title={title}
+      productPrice={discountedPrice}
+      totalProducts={itemAdded}
+      totalProductPrice={totalPrice}
+    />;
+    console.log(item);
+  };
   return (
     <div className="product-card">
       <header className="product-card-header">
@@ -33,9 +54,14 @@ const ProductCard = ({
           <div className="product-originalPrice">{originalPrice}$</div>
         </div>
         <div className="product-stock">
-          <strong>{stock}</strong> currently in stock
+          <strong>{itemStock}</strong> currently in stock
         </div>
-        <button className="add-to-cart-btn">
+        <button
+          className="add-to-cart-btn"
+          onClick={() =>
+            handleClick({ title, brand, discountedPrice, stock, imgUrl })
+          }
+        >
           <FontAwesomeIcon icon={faCartPlus} />
         </button>
       </div>
