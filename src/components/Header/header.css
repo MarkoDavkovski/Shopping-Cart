@@ -4,10 +4,14 @@
   width: 100%;
   display: flex;
   justify-content: space-around;
-  padding: 1rem;
+  align-items: center;
+  /* padding: 1rem; */
   background-color: var(--darkBlue);
   font-size: 1.25rem;
-  position: relative;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  height: 60px;
 }
 #page-header > a {
   text-decoration: none;
@@ -16,11 +20,11 @@
 .header-logo {
   height: 50px;
   position: absolute;
-  left: 1rem;
-  top: 0.25rem;
+  left: 30px;
+  top: 5px;
 }
 .fa-cart-shopping {
   position: absolute;
-  right: 1rem;
-  top: 1.2rem;
+  right: 30px;
+  top: 20px;
 }

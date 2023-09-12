@@ -6,8 +6,6 @@ const Store = () => {
 
   return (
     <section id="store">
-      {console.log(products)}
-
       {products &&
         products.map((p) => {
           let discountedPrice = p.price;
