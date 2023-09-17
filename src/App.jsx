@@ -3,11 +3,12 @@ import Main from "./components/Main/Main";
 
 import Footer from "./components/Footer/Footer";
 import "./index.css";
+import "./components/Main/main.css";
 
 function App() {
   return (
     <>
-      <Header />
+      <Header />    
       <Main />
       <Footer />
     </>

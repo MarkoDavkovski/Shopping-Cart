@@ -1,43 +1,34 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus } from "@fortawesome/free-solid-svg-icons";
+import { faCartPlus, faStar } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 import "./product-card.css";
-import Cart from "../../routes/Cart/Cart";
+
 const ProductCard = ({
   title,
   brand,
-  category = null,
-  description = null,
-  discount = null,
-  id,
-  discountedPrice,
+  discountPercentage,
+  price,
   originalPrice,
-  rating = null,
-  stock = null,
-  imgUrl,
+  rating,
+  stock,
+  images,
+  handleProducts,
 }) => {
-  const [itemStock, setItemStock] = useState(stock);
-  const [itemAdded, setItemAdded] = useState(0);
-  const [itemRemoved, setItemRemoved] = useState(0);
-  const [totalPrice, setTotalPrice] = useState(0);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  const handleClick = (item) => {
-    if (itemStock === 0) return alert(`This item is not available anymore!`);
-    setItemStock(itemStock - 1);
-    setItemAdded(itemAdded + 1);
-    setTotalPrice(totalPrice + item.discountedPrice);
-    <Cart
-      imgUrl={imgUrl}
-      title={title}
-      productPrice={discountedPrice}
-      totalProducts={itemAdded}
-      totalProductPrice={totalPrice}
-    />;
-    console.log(item);
+  const nextImage = () => {
+    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
   };
+
+  const previousImage = () => {
+    setCurrentImageIndex((prevIndex) =>
+      prevIndex === 0 ? images.length - 1 : prevIndex - 1
+    );
+  };
+
   return (
     <div className="product-card">
       <header className="product-card-header">
@@ -45,23 +36,29 @@ const ProductCard = ({
         <h3 className="product-title">{title}</h3>
         <div className="product-brand">{brand}</div>
       </header>
-      <img src={imgUrl} alt="product image" className="product-img" />
+
+      <div className="product-image">
+        <img
+          src={images[currentImageIndex]}
+          alt="product image"
+          className="product-img"
+        />
+        <button onClick={previousImage}>Previous</button>
+        <button onClick={nextImage}>Next</button>
+      </div>
       <div className="bottom-section">
-        <div className="product-rating">{rating}</div>
-        <div className="product-discount">{discount}% OFF</div>
+        <div className="product-rating">
+          {rating} <FontAwesomeIcon icon={faStar} />
+        </div>
+        <div className="product-discount">{discountPercentage}% OFF</div>
         <div className="product-price-container">
-          <div className="product-discountedPrice">{discountedPrice}$</div>
+          <div className="product-discountedPrice">{price.toFixed(2)}$</div>
           <div className="product-originalPrice">{originalPrice}$</div>
         </div>
         <div className="product-stock">
-          <strong>{itemStock}</strong> currently in stock
+          <strong>{stock}</strong> currently in stock
         </div>
-        <button
-          className="add-to-cart-btn"
-          onClick={() =>
-            handleClick({ title, brand, discountedPrice, stock, imgUrl })
-          }
-        >
+        <button className="add-to-cart-btn" onClick={handleProducts}>
           <FontAwesomeIcon icon={faCartPlus} />
         </button>
       </div>

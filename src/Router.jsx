@@ -12,19 +12,15 @@ import Store from "./routes/Store/Store.jsx";
 import Cart from "./routes/Cart/Cart.jsx";
 import App from "./App.jsx";
 
-import { useProducts } from "./hooks/useProducts.jsx";
-
 const Router = () => {
-  const products = useProducts();
-
   const router = createBrowserRouter(
     createRoutesFromElements(
       <Route path="/" element={<App />} errorElement={<ErrorPage />}>
-        <Route index element={<Home />} loader={() => products} />
+        <Route index element={<Home />} />
 
-        <Route path="/About" element={<About />} />
-        <Route path="/Store" element={<Store />} loader={() => products} />
-        <Route path="/Cart" element={<Cart />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/store" element={<Store />} />
+        <Route path="/cart" element={<Cart />} />
       </Route>
     )
   );

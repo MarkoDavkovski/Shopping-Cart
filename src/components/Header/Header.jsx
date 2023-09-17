@@ -13,7 +13,6 @@ const Header = () => {
         <NavLink to="/Store">Store</NavLink>
         <NavLink to="/About">About</NavLink>
         <NavLink to="/Cart">
-          {" "}
           <FontAwesomeIcon icon={faShoppingCart} size="1x" />
         </NavLink>
       </nav>

@@ -1,34 +1,55 @@
 /* eslint-disable react/prop-types */
 import "./store.css";
-import { useLoaderData } from "react-router-dom";
+
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
+import { ProductsContext, CartContext } from "../../ProductsContext.jsx";
+import { useContext } from "react";
+
 const Store = () => {
-  const products = useLoaderData();
-  console.log("from store : " + products);
+  const { products, setProducts } = useContext(ProductsContext);
+  const { cartProducts, setCartProducts } = useContext(CartContext);
+
+  const handleAddProduct = (selectedProduct) => {
+    const productInCart = cartProducts.find(
+      (product) => product.id === selectedProduct.id
+    );
+
+    if (productInCart) {
+      const updatedCart = cartProducts.map((product) => {
+        if (product.id === selectedProduct.id)
+          return { ...product, quantity: product.quantity + 1 };
+        return product;
+      });
+      setCartProducts(updatedCart);
+    } else {
+      setCartProducts([...cartProducts, { ...selectedProduct, quantity: 1 }]);
+    }
+
+    const nextState = [...products];
+    nextState.map((product) => {
+      if (product.id === selectedProduct.id) {
+        return { ...product, stock: product.stock-- };
+      }
+      return product;
+    });
+
+    setProducts(nextState);
+  };
 
   return (
     <section id="store">
-      {/* {!products && <h1>Loading the products!</h1>} */}
       {products &&
-        products.map((p) => {
-          let discountedPrice = p.price;
-          let discPercentage = p.discountPercentage;
-          let originalPrice = p.price / (1 - discPercentage / 100);
+        products.map((product) => {
+          let originalPrice =
+            product.price / (1 - product.discountPercentage / 100);
           originalPrice = parseFloat(originalPrice).toFixed(2);
 
           return (
             <ProductCard
-              key={p.id}
-              title={p.title}
-              brand={p.brand}
-              category={p.category}
-              id={p.id}
-              description={p.description}
-              imgUrl={p.thumbnail}
-              discountedPrice={discountedPrice}
-              stock={p.stock}
-              discount={discPercentage}
+              key={product.id}
+              {...product}
               originalPrice={originalPrice}
+              handleProducts={() => handleAddProduct(product)}
             />
           );
         })}

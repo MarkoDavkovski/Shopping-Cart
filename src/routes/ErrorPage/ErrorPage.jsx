@@ -1,7 +1,9 @@
+import {Link} from "react-router-dom";
+
 const ErrorPage = () => {
   return (
     <>
-      <div></div>
+      <h1>Wrong page , go back to <Link to='/'> Home </Link> </h1>
     </>
   );
 };

@@ -3,6 +3,10 @@ import { useEffect, useState } from "react";
 export function useProducts() {
   const [products, setProducts] = useState([]);
 
+//  const handleProducts = (value) => {
+//    setProducts(value);
+//  };
+
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())

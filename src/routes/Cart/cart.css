@@ -2,4 +2,29 @@
 
 #cart-section {
   max-width: 75em;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+.quantity-container {
+  display: flex;
+  gap: 0.5rem;
+}
+.quantity-btn {
+  width: 30px;
+  height: 30px;
+  font-size: 1.4rem;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  background-color: rgba(0, 0, 0, 0.2);
+  box-shadow: 1px 3px 5px rgba(0, 0, 0, 0.5);
+  color: var(--whiteColor);
+}
+.checkout-price {
+  text-align: center;
+  padding: 0.5rem;
+  font-size: 1.5rem;
+  background-color: rgba(0, 0, 0, 0.2);
+  border-radius: 5px;
 }
