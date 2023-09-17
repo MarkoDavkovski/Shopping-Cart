@@ -43,8 +43,8 @@ const ProductCard = ({
           alt="product image"
           className="product-img"
         />
-        <button onClick={previousImage}>Previous</button>
-        <button onClick={nextImage}>Next</button>
+        {/* <button onClick={previousImage}>Previous</button> */}
+        {/* <button onClick={nextImage}>Next</button> */}
       </div>
       <div className="bottom-section">
         <div className="product-rating">
