@@ -108,9 +108,7 @@ h2#our-team {
 }
 
 /* Style the Social Media section */
-.social-media {
-  width: 50%;
-}
+
 .social-media > h2,
 .contact-info > h2 {
   margin-bottom: 0.75em;
@@ -126,12 +124,11 @@ h2#our-team {
   gap: 1rem;
 }
 .sm-description-and-icons-container > p {
-  width: 50%;
+  max-width: 300px;
 }
 .social-icons a {
   color: var(--whiteColor);
   font-size: 1.5rem;
-
   transition: color 0.3s ease;
 }
 
@@ -142,4 +139,5 @@ h2#our-team {
 .contact-and-sm-container {
   margin-top: 2rem;
   display: flex;
+  justify-content: space-around;
 }
