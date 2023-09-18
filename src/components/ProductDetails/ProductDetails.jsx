@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCartPlus,
   faStar,
-  faArrowLeft,
-  faArrowRight,
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
@@ -53,10 +53,10 @@ const ProductDetails = () => {
               className="product-details-img"
             />
             <button className="prev-btn" onClick={previousImage}>
-              <FontAwesomeIcon icon={faArrowLeft} />
+              <FontAwesomeIcon icon={faChevronLeft} />
             </button>
             <button className="next-btn" onClick={nextImage}>
-              <FontAwesomeIcon icon={faArrowRight} />
+              <FontAwesomeIcon icon={faChevronRight} />
             </button>
           </div>
           <div className="pd-bottom-section">
