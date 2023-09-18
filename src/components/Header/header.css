@@ -19,12 +19,29 @@
 }
 .header-logo {
   height: 50px;
-  position: absolute;
-  left: 30px;
-  top: 5px;
 }
+
 .fa-cart-shopping {
+  height: 1.5rem;
+  width: 1.5rem;
+}
+.header-cart-container {
+  position: relative;
+}
+.products-in-cart {
   position: absolute;
-  right: 30px;
-  top: 20px;
+  top: -7px;
+  right: -8px;
+
+  font-size: 0.7rem;
+  font-weight: bold;
+  background-color: var(--lightBlue);
+
+  width: 18px; /* Adjust the width and height as needed */
+  height: 18px;
+  border-radius: 50%; /* Makes it a circle */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
 }

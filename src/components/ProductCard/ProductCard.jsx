@@ -52,8 +52,8 @@ const ProductCard = ({
         </div>
         <div className="product-discount">{discountPercentage}% OFF</div>
         <div className="product-price-container">
-          <div className="product-discountedPrice">{price.toFixed(2)}$</div>
           <div className="product-originalPrice">{originalPrice}$</div>
+          <div className="product-discountedPrice">{price.toFixed(2)}$</div>
         </div>
         <div className="product-stock">
           <strong>{stock}</strong> currently in stock
