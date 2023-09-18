@@ -2,11 +2,12 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCartPlus, faStar } from "@fortawesome/free-solid-svg-icons";
-import { useState } from "react";
 
 import "./product-card.css";
+import { Link } from "react-router-dom";
 
 const ProductCard = ({
+  id,
   title,
   brand,
   discountPercentage,
@@ -17,35 +18,18 @@ const ProductCard = ({
   images,
   handleProducts,
 }) => {
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-
-  const nextImage = () => {
-    setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
-  };
-
-  const previousImage = () => {
-    setCurrentImageIndex((prevIndex) =>
-      prevIndex === 0 ? images.length - 1 : prevIndex - 1
-    );
-  };
-
   return (
     <div className="product-card">
       <header className="product-card-header">
-        {" "}
-        <h3 className="product-title">{title}</h3>
+        <Link to={`/store/product/${id}`} className="product-title">
+          <h3>{title}</h3>
+        </Link>
         <div className="product-brand">{brand}</div>
       </header>
 
-      <div className="product-image">
-        <img
-          src={images[currentImageIndex]}
-          alt="product image"
-          className="product-img"
-        />
-        {/* <button onClick={previousImage}>Previous</button> */}
-        {/* <button onClick={nextImage}>Next</button> */}
-      </div>
+      <Link to={`/store/product/${id}`} className="product-image">
+        <img src={images[0]} alt="product image" className="product-img" />
+      </Link>
       <div className="bottom-section">
         <div className="product-rating">
           {rating} <FontAwesomeIcon icon={faStar} />

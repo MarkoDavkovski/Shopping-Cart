@@ -21,22 +21,16 @@ const Cart = () => {
     const updatedCart = cartProducts.reduce((acc, item) => {
       if (item.id === id) {
         const updatedQuantity = item.quantity + change;
-        if (updatedQuantity >= 1) {
+        if (updatedQuantity >= 1)
           acc.push({ ...item, quantity: updatedQuantity });
-        }
-      } else {
-        acc.push(item);
-      }
+      } else acc.push(item);
 
       let updatedStock = 0;
 
       const product = products.find((product) => product.id === id);
-      if (change === 1) {
-        updatedStock = product.stock - 1;
-        console.log(product.stock);
-      } else {
-        updatedStock = product.stock + 1;
-      }
+      if (change === 1) updatedStock = product.stock - 1;
+      else updatedStock = product.stock + 1;
+
       const updatedProduct = { ...product, stock: updatedStock };
       setProducts((prevProducts) =>
         prevProducts.map((p) =>
@@ -57,26 +51,29 @@ const Cart = () => {
               <div className="cart-item" key={item.id}>
                 <img src={item.thumbnail} alt={item.title} />
                 <div className="item-details">
-                  <h3>{item.title}</h3>
-                  <p>Price: ${item.price}</p>
-
-                  <div className="quantity-container ">
-                    <button
-                      className="increment-quantity quantity-btn"
-                      onClick={() => handleQuantityChange(item.id, 1)}
-                    >
-                      +
-                    </button>
-                    <p className="quantity"> {item.quantity}</p>
-                    <button
-                      className="decrement-quantity quantity-btn"
-                      onClick={() => handleQuantityChange(item.id, -1)}
-                    >
-                      -
-                    </button>
+                  <div className="flex-left-container">
+                    <h3>{item.title}</h3>
+                    <p>Price: ${item.price}</p>
                   </div>
+                  <div className="flex-right-container">
+                    <div className="quantity-container ">
+                      <button
+                        className="increment-quantity quantity-btn"
+                        onClick={() => handleQuantityChange(item.id, 1)}
+                      >
+                        +
+                      </button>
+                      <p className="quantity"> {item.quantity}</p>
+                      <button
+                        className="decrement-quantity quantity-btn"
+                        onClick={() => handleQuantityChange(item.id, -1)}
+                      >
+                        -
+                      </button>
+                    </div>
 
-                  <p>Total: ${item.quantity * item.price}</p>
+                    <p>Total: ${item.quantity * item.price}</p>
+                  </div>
                 </div>
               </div>
               <hr></hr>

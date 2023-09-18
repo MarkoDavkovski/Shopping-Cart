@@ -16,15 +16,14 @@ const Header = () => {
 
   return (
     <>
-      {console.log(cartProducts.length)}
       <nav id="page-header">
         <NavLink to="/">
           <img src="/fflogo.png" alt="logo" className="header-logo" />
         </NavLink>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/Store">Store</NavLink>
-        <NavLink to="/About">About</NavLink>
-        <NavLink to="/Cart" className="header-cart-container">
+        <NavLink to="/store">Store</NavLink>
+        <NavLink to="/about">About</NavLink>
+        <NavLink to="/cart" className="header-cart-container">
           {cartProducts.length > 0 ? (
             <>
               <FontAwesomeIcon icon={faShoppingCart} size="1x" />
