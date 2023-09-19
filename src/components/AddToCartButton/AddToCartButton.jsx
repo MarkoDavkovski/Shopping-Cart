@@ -35,8 +35,11 @@ const AddToCartButton = ({ productID }) => {
 
   const handleAddToCart = () => {
     const product = products.find((p) => p.id === productID);
-    const currentQuantityToAdd = quantityToAdd;
-
+    const currentQuantityToAdd = parseInt(quantityToAdd, 10);
+    if (isNaN(currentQuantityToAdd) || currentQuantityToAdd <= 0) {
+      console.log(quantityToAdd);
+      return alert("Please enter a valid quantity greater than 0.");
+    }
     if (product.stock < currentQuantityToAdd) {
       alert("There are not enough products in store");
       closeModal();
@@ -57,6 +60,7 @@ const AddToCartButton = ({ productID }) => {
           <div className="modal-content">
             <h2>Add to Cart</h2>
             <input
+              min={1}
               type="text"
               value={quantityToAdd}
               onChange={handleQuantityChange}
