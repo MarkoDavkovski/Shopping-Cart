@@ -1,10 +1,11 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCartPlus, faStar } from "@fortawesome/free-solid-svg-icons";
+import { faStar } from "@fortawesome/free-solid-svg-icons";
 
 import "./product-card.css";
 import { Link } from "react-router-dom";
+import AddToCartButton from "../AddToCartButton/AddToCartButton";
 
 const ProductCard = ({
   id,
@@ -16,6 +17,7 @@ const ProductCard = ({
   rating,
   stock,
   images,
+  quantity,
   handleProducts,
 }) => {
   return (
@@ -42,9 +44,8 @@ const ProductCard = ({
         <div className="product-stock">
           <strong>{stock}</strong> currently in stock
         </div>
-        <button className="add-to-cart-btn" onClick={handleProducts}>
-          <FontAwesomeIcon icon={faCartPlus} />
-        </button>
+
+        <AddToCartButton handleAddProduct={handleProducts} productID={id} />
       </div>
     </div>
   );

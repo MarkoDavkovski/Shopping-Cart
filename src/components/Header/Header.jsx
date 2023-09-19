@@ -10,7 +10,9 @@ const Header = () => {
 
   const calculateTotalQuantity = () => {
     let totalQuantity = 0;
-    for (const item of cartProducts) totalQuantity += item.quantity;
+    for (const item of cartProducts) {
+      totalQuantity += item.quantity;
+    }
     return totalQuantity;
   };
 

@@ -41,6 +41,25 @@ const Cart = () => {
     }, []);
     setCartProducts(updatedCart);
   };
+  const handleRemoveFromCart = (itemID) => {
+    setCartProducts((prevCartProducts) => {
+      const updatedCart = prevCartProducts.filter(({ id }) => id !== itemID);
+
+      const updatedProducts = products.map((product) => {
+        const cartItem = prevCartProducts.find(({ id }) => id === product.id);
+        if (cartItem) {
+          product.quantity = 0;
+
+          product.stock += cartItem.quantity;
+        }
+        return product;
+      });
+
+      setProducts(updatedProducts);
+
+      return updatedCart;
+    });
+  };
 
   return (
     <section id="cart-section">
@@ -58,21 +77,28 @@ const Cart = () => {
                   <div className="flex-right-container">
                     <div className="quantity-container ">
                       <button
-                        className="increment-quantity quantity-btn"
-                        onClick={() => handleQuantityChange(item.id, 1)}
-                      >
-                        +
-                      </button>
-                      <p className="quantity"> {item.quantity}</p>
-                      <button
                         className="decrement-quantity quantity-btn"
                         onClick={() => handleQuantityChange(item.id, -1)}
                       >
                         -
                       </button>
+                      <p className="quantity"> {item.quantity}</p>
+
+                      <button
+                        className="increment-quantity quantity-btn"
+                        onClick={() => handleQuantityChange(item.id, 1)}
+                      >
+                        +
+                      </button>
                     </div>
 
                     <p>Total: ${item.quantity * item.price}</p>
+                    <button
+                      className="remove-from-cart-btn"
+                      onClick={() => handleRemoveFromCart(item.id)}
+                    >
+                      Remove product
+                    </button>
                   </div>
                 </div>
               </div>

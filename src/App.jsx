@@ -14,7 +14,13 @@ function App() {
   useEffect(() => {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
-      .then((data) => setProducts(data.products))
+      .then((data) => {
+        const productsWithQuantity = data.products.map((product) => ({
+          ...product,
+          quantity: 0,
+        }));
+        setProducts(productsWithQuantity);
+      })
       .catch((error) => {
         console.error("Error fetching data:", error);
         setProducts([]);

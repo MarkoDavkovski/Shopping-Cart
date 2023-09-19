@@ -2,39 +2,14 @@
 import "./store.css";
 
 import ProductCard from "../../components/ProductCard/ProductCard.jsx";
-import { ProductsContext, CartContext } from "../../ProductsContext.jsx";
+import { ProductsContext } from "../../ProductsContext.jsx";
 import { useContext } from "react";
+import { useHandleAddProduct } from "../../hooks/useHandleAddProduct";
 
 const Store = () => {
-  const { products, setProducts } = useContext(ProductsContext);
-  const { cartProducts, setCartProducts } = useContext(CartContext);
+  const { products } = useContext(ProductsContext);
 
-  const handleAddProduct = (selectedProduct) => {
-    const productInCart = cartProducts.find(
-      (product) => product.id === selectedProduct.id
-    );
-
-    if (productInCart) {
-      const updatedCart = cartProducts.map((product) => {
-        if (product.id === selectedProduct.id)
-          return { ...product, quantity: product.quantity + 1 };
-        return product;
-      });
-      setCartProducts(updatedCart);
-    } else {
-      setCartProducts([...cartProducts, { ...selectedProduct, quantity: 1 }]);
-    }
-
-    const nextState = [...products];
-    nextState.map((product) => {
-      if (product.id === selectedProduct.id) {
-        return { ...product, stock: product.stock-- };
-      }
-      return product;
-    });
-
-    setProducts(nextState);
-  };
+  const handleAddProduct = useHandleAddProduct();
 
   return (
     <section id="store">
