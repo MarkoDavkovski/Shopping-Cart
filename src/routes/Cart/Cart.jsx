@@ -2,6 +2,7 @@
 import "./cart.css";
 import { useContext, useState, useEffect } from "react";
 import { CartContext, ProductsContext } from "../../ProductsContext";
+import { Link } from "react-router-dom";
 
 const Cart = () => {
   const { products, setProducts } = useContext(ProductsContext);
@@ -71,7 +72,13 @@ const Cart = () => {
                 <img src={item.thumbnail} alt={item.title} />
                 <div className="item-details">
                   <div className="flex-left-container">
-                    <h3>{item.title}</h3>
+                    <h3></h3>
+                    <Link
+                      to={`/store/product/${item.id}`}
+                      className="product-title"
+                    >
+                      <h3>{item.title}</h3>
+                    </Link>
                     <p>Price: ${item.price}</p>
                   </div>
                   <div className="flex-right-container">

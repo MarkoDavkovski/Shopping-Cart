@@ -8,8 +8,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
-import { ProductsContext, CartContext } from "../../ProductsContext.jsx";
-import { Link } from "react-router-dom";
+import { ProductsContext } from "../../ProductsContext.jsx";
 
 import "./productDetails.css";
 import AddToCartButton from "../AddToCartButton/AddToCartButton.jsx";
@@ -43,9 +42,7 @@ const ProductDetails = () => {
       {product ? (
         <>
           <header className="product-details-card-header">
-            <Link to={`/store/product/${id}`} className="product-details-title">
-              <h3>{product.title}</h3>
-            </Link>
+            <h3 className="product-details-title">{product.title}</h3>
             <div className="product-details-brand">{product.brand}</div>
           </header>
           <div className="product-details-image-container">
