@@ -3,6 +3,12 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
   gap: 1rem;
-  max-width: 1200px;
+  max-width: 75rem;
   padding: 1rem 0;
+}
+@media screen and (max-width: 1250px) {
+  #store {
+    width: 90%;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  }
 }

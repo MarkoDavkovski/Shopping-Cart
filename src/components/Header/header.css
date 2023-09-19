@@ -46,3 +46,8 @@
   font-weight: bold;
   outline: 3px solid var(--darkBlue);
 }
+
+@media screen and (max-width: 450px) {
+  #page-header {
+  }
+}
