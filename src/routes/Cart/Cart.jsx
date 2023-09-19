@@ -69,7 +69,11 @@ const Cart = () => {
           return (
             <>
               <div className="cart-item" key={item.id}>
-                <img src={item.thumbnail} alt={item.title} />
+                <img
+                  src={item.thumbnail}
+                  alt={item.title}
+                  className="product-details-img"
+                />
                 <div className="item-details">
                   <div className="flex-left-container">
                     <h3></h3>
