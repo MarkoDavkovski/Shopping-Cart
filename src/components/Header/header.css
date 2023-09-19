@@ -5,7 +5,6 @@
   display: flex;
   justify-content: space-around;
   align-items: center;
-  /* padding: 1rem; */
   background-color: var(--darkBlue);
   font-size: 1.25rem;
   position: sticky;
@@ -46,8 +45,11 @@
   font-weight: bold;
   outline: 3px solid var(--darkBlue);
 }
-
-@media screen and (max-width: 450px) {
-  #page-header {
+#footer-routes {
+  display: none;
+}
+@media screen and (max-width: 500px) {
+  .header-routes {
+    display: none;
   }
 }
