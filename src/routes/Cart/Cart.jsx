@@ -19,6 +19,11 @@ const Cart = () => {
   }, [cartProducts]);
 
   const handleQuantityChange = (id, change) => {
+    const product = products.find((p) => p.id === id);
+
+    if (product.stock === 0)
+      return alert("There are no more products in stock for this item.");
+
     const updatedCart = cartProducts.reduce((acc, item) => {
       if (item.id === id) {
         const updatedQuantity = item.quantity + change;
@@ -42,6 +47,7 @@ const Cart = () => {
     }, []);
     setCartProducts(updatedCart);
   };
+
   const handleRemoveFromCart = (itemID) => {
     setCartProducts((prevCartProducts) => {
       const updatedCart = prevCartProducts.filter(({ id }) => id !== itemID);
