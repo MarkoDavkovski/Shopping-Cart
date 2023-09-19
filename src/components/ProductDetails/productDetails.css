@@ -9,7 +9,9 @@
 
 .product-details-title {
   font-size: 1.5rem;
+  cursor: pointer;
 }
+
 .product-details-image-container {
   position: relative;
 }

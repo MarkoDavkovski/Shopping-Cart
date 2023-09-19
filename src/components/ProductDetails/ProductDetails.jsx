@@ -2,7 +2,6 @@
 /* eslint-disable react/prop-types */
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faCartPlus,
   faStar,
   faChevronLeft,
   faChevronRight,
@@ -10,13 +9,14 @@ import {
 import { useState, useContext } from "react";
 import { useParams } from "react-router-dom";
 import { ProductsContext, CartContext } from "../../ProductsContext.jsx";
+import { Link } from "react-router-dom";
 
 import "./productDetails.css";
+import AddToCartButton from "../AddToCartButton/AddToCartButton.jsx";
 
 const ProductDetails = () => {
   const { id } = useParams();
-  const { products, setProducts } = useContext(ProductsContext);
-  const { cartProducts, setCartProducts } = useContext(CartContext);
+  const { products } = useContext(ProductsContext);
 
   const product = products.find((item) => item.id == id);
   let originalPrice = null;
@@ -43,7 +43,9 @@ const ProductDetails = () => {
       {product ? (
         <>
           <header className="product-details-card-header">
-            <h3 className="product-details-title">{product.title}</h3>
+            <Link to={`/store/product/${id}`} className="product-details-title">
+              <h3>{product.title}</h3>
+            </Link>
             <div className="product-details-brand">{product.brand}</div>
           </header>
           <div className="product-details-image-container">
@@ -78,15 +80,7 @@ const ProductDetails = () => {
               <div className="product-details-stock">
                 <strong>{product.stock}</strong> currently in stock
               </div>
-              <button
-                className="add-to-cart-btn"
-                onClick={product.handleProducts}
-              >
-                <FontAwesomeIcon
-                  icon={faCartPlus}
-                  className="product-details-cart"
-                />
-              </button>
+              <AddToCartButton productID={product.id} />
             </div>
             <div className="product-details-category">
               Category : {product.category}

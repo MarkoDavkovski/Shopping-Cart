@@ -43,6 +43,7 @@ const AddToCartButton = ({ productID }) => {
     } else {
       handleAddProduct1(product, currentQuantityToAdd);
       closeModal();
+      setQuantityToAdd("");
     }
   };
 

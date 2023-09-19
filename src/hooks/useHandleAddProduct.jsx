@@ -9,14 +9,13 @@ export const useHandleAddProduct = () => {
     const productInCart = cartProducts.find(
       (product) => product.id === selectedProduct.id
     );
-    console.log(`qtoadd${qToAdd}`);
 
     if (productInCart) {
       const updatedCart = cartProducts.map((product) => {
         if (product.id === selectedProduct.id) {
           return {
             ...product,
-            quantity: product.quantity,
+            quantity: (product.quantity += qToAdd),
             stock: (product.stock -= qToAdd),
           };
         }
