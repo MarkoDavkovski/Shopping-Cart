@@ -48,12 +48,12 @@ function App() {
 
   useEffect(() => {
     const savedCartProducts = loadFromLocalStorage("cartProducts");
-    if (savedCartProducts.length !== 0) {
+    if (savedCartProducts) {
       setCartProducts(savedCartProducts);
     }
 
     const savedProducts = loadFromLocalStorage("products");
-    if (savedProducts.length !== 0) {
+    if (savedProducts) {
       setProducts(savedProducts);
     }
   }, []);
