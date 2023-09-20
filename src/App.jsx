@@ -7,11 +7,31 @@ import Footer from "./components/Footer/Footer";
 import "./index.css";
 import "./components/Main/main.css";
 
+const loadFromLocalStorage = (key) => {
+  const data = localStorage.getItem(key);
+  return data ? JSON.parse(data) : null;
+};
+
 function App() {
-  const [cartProducts, setCartProducts] = useState([]);
-  const [products, setProducts] = useState([]);
+  const [cartProducts, setCartProducts] = useState(
+    loadFromLocalStorage("cartProducts") || []
+  );
+  const [products, setProducts] = useState(
+    loadFromLocalStorage("products") || []
+  );
+
+  const saveToLocalStorage = (key, data) => {
+    localStorage.setItem(key, JSON.stringify(data));
+  };
+
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
+    return () => setIsMounted(false);
+  }, []);
+
+  if (products.length === 0 && isMounted) {
     fetch("https://dummyjson.com/products")
       .then((res) => res.json())
       .then((data) => {
@@ -25,7 +45,25 @@ function App() {
         console.error("Error fetching data:", error);
         setProducts([]);
       });
+  }
+
+  useEffect(() => {
+    const savedCartProducts = loadFromLocalStorage("cartProducts");
+    if (savedCartProducts.length !== 0) {
+      setCartProducts(savedCartProducts);
+    }
+
+    const savedProducts = loadFromLocalStorage("products");
+    if (savedProducts.length !== 0) {
+      setProducts(savedProducts);
+    }
   }, []);
+
+  useEffect(() => {
+    saveToLocalStorage("cartProducts", cartProducts);
+
+    saveToLocalStorage("products", products);
+  }, [cartProducts, products]);
 
   return (
     <>
