@@ -21,8 +21,9 @@ const Cart = () => {
   const handleQuantityChange = (id, change) => {
     const product = products.find((p) => p.id === id);
 
-    if (product.stock === 0)
+    if (product.stock === 0 && change !== -1) {
       return alert("There are no more products in stock for this item.");
+    }
 
     const updatedCart = cartProducts.reduce((acc, item) => {
       if (item.id === id) {
