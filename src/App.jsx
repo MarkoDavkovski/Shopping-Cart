@@ -24,28 +24,23 @@ function App() {
     localStorage.setItem(key, JSON.stringify(data));
   };
 
-  const [isMounted, setIsMounted] = useState(false);
-
   useEffect(() => {
-    setIsMounted(true);
-    return () => setIsMounted(false);
+    if (products.length === 0) {
+      fetch("https://dummyjson.com/products")
+        .then((res) => res.json())
+        .then((data) => {
+          const productsWithQuantity = data.products.map((product) => ({
+            ...product,
+            quantity: 0,
+          }));
+          setProducts(productsWithQuantity);
+        })
+        .catch((error) => {
+          console.error("Error fetching data:", error);
+          setProducts([]);
+        });
+    }
   }, []);
-
-  if (products.length === 0 && isMounted) {
-    fetch("https://dummyjson.com/products")
-      .then((res) => res.json())
-      .then((data) => {
-        const productsWithQuantity = data.products.map((product) => ({
-          ...product,
-          quantity: 0,
-        }));
-        setProducts(productsWithQuantity);
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-        setProducts([]);
-      });
-  }
 
   useEffect(() => {
     const savedCartProducts = loadFromLocalStorage("cartProducts");
