@@ -31,6 +31,8 @@ const AddToCartButton = ({ productID }) => {
     const newQuantity = parseInt(event.target.value, 10);
     if (!isNaN(newQuantity) && newQuantity >= 0) {
       setQuantityToAdd(newQuantity);
+    } else {
+      setQuantityToAdd("");
     }
   };
 
